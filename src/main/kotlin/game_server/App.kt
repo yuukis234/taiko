@@ -3,13 +3,10 @@
  */
 package game_server
 
-class App {
-    val greeting: String
-        get() {
-            return "Hello world."
-        }
-}
+import udp_socket.*
+
 
 fun main(args: Array<String>) {
-    println(App().greeting)
+    val half = udp_socket.UDP()
+    half.run()
 }
