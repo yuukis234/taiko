@@ -2,6 +2,8 @@ package udp_socket
 import java.net.DatagramSocket
 import java.net.DatagramPacket
 
+
+
 class UDP()
 {
   fun run() {
@@ -12,8 +14,7 @@ class UDP()
           var packet = DatagramPacket(data, data.size)
           server.receive(packet)
           val output = String(data, Charsets.UTF_8)
-          println(output)
-          println(data.size)
+          server.send(packet)
         } catch (e: Exception) {
           println("error")
           break
