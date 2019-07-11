@@ -5,6 +5,10 @@ package game_server
 
 import kotlin.test.Test
 import kotlin.test.assertNotNull
+import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.assertThrows
+import org.spekframework.spek2.Spek
+import org.spekframework.spek2.style.specification.describe
 
 class AppTest {
     @Test fun testAppHasAGreeting() {
