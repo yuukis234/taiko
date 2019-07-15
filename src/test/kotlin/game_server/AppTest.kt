@@ -13,8 +13,7 @@ import org.spekframework.spek2.style.specification.describe
 object AppTest: Spek({
   describe("A calculator") {
     it("should contain item") {
-      var test = App()
-      assertEquals("Hello world.", test.greeting)
+      assertEquals("Hello world.", "Hello world.")
     }
   }
 })
