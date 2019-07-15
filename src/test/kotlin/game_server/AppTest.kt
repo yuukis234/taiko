@@ -10,9 +10,11 @@ import org.junit.jupiter.api.assertThrows
 import org.spekframework.spek2.Spek
 import org.spekframework.spek2.style.specification.describe
 
-class AppTest {
-    @Test fun testAppHasAGreeting() {
-        val classUnderTest = App()
-        assertNotNull(classUnderTest.greeting, "app should have a greeting")
+object AppTest: Spek({
+  describe("A calculator") {
+    it("should contain item") {
+      var test = App()
+      assertEquals("Hello world.", test.greeting)
     }
-}
+  }
+})
