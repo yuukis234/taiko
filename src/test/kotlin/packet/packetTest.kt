@@ -22,10 +22,27 @@ object PacketTest: Spek({
   describe("Image_Byte") {
     describe("change_png_to_byte") {
       it ("jpgをバイトファイルに変換します") {
-        // Fixme: あとで相対パスに変更する
         val image_file = File("src/test/resources/bird.png")
         val image = Image_Byte(image_file)
         assertTrue(image.change_png_to_byte() is ByteArray)
+      }
+    }
+  }
+
+  describe("RTP_Header") {
+    describe("header_return") {
+      val header = RTP_Header()
+      var header_array = header.create_header()
+      it ("ByteArrayを返してくれるか？") {
+        assertTrue( header_array is ByteArray )
+      }
+      it ("versionがbyteか？") {
+        assertTrue( header_array[0] is Byte )
+      }
+      it ("中を変えることはできるか？") {
+        header_array[1] = 2
+        var two : Byte = 2
+        assertTrue( header_array[1] == two)
       }
     }
   }

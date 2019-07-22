@@ -23,6 +23,31 @@ class Image_Byte (val file : File) {
 // Headerによって決まりを決めていきます。
 class RTP_Header {
 
+  // Headerの構造を入れています。
+  var rtp_header = ByteArray(9)
+  val version : Byte = 1
+  val padding : Byte = 0
+  val extension : Byte = 0
+  val csrc_count : Byte = 0
+  val marker : Byte = 0
+  val payload_type : Byte = 0
+  val sequence_number : Byte = 0
+  val timestamp : Byte = 0
+  val ssrc : Byte = 0
+
+// rtp_headerの配列を作ってくれる。
+  fun create_header () : ByteArray {
+    this.rtp_header[0] = version
+    this.rtp_header[1] = padding
+    this.rtp_header[2] = extension
+    this.rtp_header[3] = csrc_count
+    this.rtp_header[4] = marker
+    this.rtp_header[5] = payload_type
+    this.rtp_header[6] = sequence_number
+    this.rtp_header[7] = timestamp
+    this.rtp_header[8] = ssrc
+    return this.rtp_header
+  }
 }
 
 // RTPの制御をしてくれるコントローラー
