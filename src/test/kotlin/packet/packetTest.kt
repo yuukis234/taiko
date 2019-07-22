@@ -13,9 +13,14 @@ import java.io.*
 
 object PacketTest: Spek({
   describe("A calculator") {
+    val image_file = File("src/test/resources/bird.png")
     it("should contain item") {
-      var test = RTP()
+      var test = RTP(image_file)
       assertEquals(test.greeting(), "Hello world.")
+    }
+    it("connect_header_file") {
+      var test = RTP(image_file)
+      assertTrue(test.connect_header_file() is ByteArray)
     }
   }
 
@@ -43,6 +48,14 @@ object PacketTest: Spek({
         header_array[1] = 2
         var two : Byte = 2
         assertTrue( header_array[1] == two)
+      }
+    }
+    describe("change_num")  {
+      val header = RTP_Header()
+      val num : Byte = 2
+      it ("versionを変更できるか？") {
+        header.change_num(num)
+        assertTrue( header.version == num )
       }
     }
   }

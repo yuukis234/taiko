@@ -24,8 +24,8 @@ class Image_Byte (val file : File) {
 class RTP_Header {
 
   // Headerの構造を入れています。
-  var rtp_header = ByteArray(9)
-  val version : Byte = 1
+  val rtp_header = ByteArray(9)
+  var version : Byte = 1
   val padding : Byte = 0
   val extension : Byte = 0
   val csrc_count : Byte = 0
@@ -48,6 +48,10 @@ class RTP_Header {
     this.rtp_header[8] = ssrc
     return this.rtp_header
   }
+
+  fun change_num (byte : Byte) {
+    this.version = byte
+  }
 }
 
 // RTPの制御をしてくれるコントローラー
@@ -58,6 +62,15 @@ class RTP_Controller {}
 // RPTの機能をまとめたクラス
 // このクラスを主に使う。このクラスに機能を付け加えて、使えるようにする。
 // ここが中枢を司る。
-class RTP{
+class RTP (file: File) {
+  var header = RTP_Header()
+  var file = Image_Byte(file)
+
+// header_arrayとarrayをつなげる
+// arrayは画像ファイルを想定していて、500kbのpngファイルを想定しています。
+// つなげることで一つのパケットを作ることができます。
+  fun connect_header_file () : ByteArray {
+    return header.create_header() + file.change_png_to_byte()
+  }
   fun greeting (): String = "Hello world."
 }
