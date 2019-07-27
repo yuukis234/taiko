@@ -35,7 +35,7 @@ object PacketTest: Spek({
   }
 
   describe("RTP_Header") {
-    describe("header_return") {
+    describe("create_header") {
       val header = RTP_Header()
       var header_array = header.create_header()
       it ("ByteArrayを返してくれるか？") {
@@ -44,18 +44,17 @@ object PacketTest: Spek({
       it ("versionがbyteか？") {
         assertTrue( header_array[0] is Byte )
       }
-      it ("中を変えることはできるか？") {
-        header_array[1] = 2
-        var two : Byte = 2
-        assertTrue( header_array[1] == two)
+      it ("create_headerのversionを2にする")
+      {
+        val number : Byte = 2
+        val change_array = header.create_header(version = number)
+        assertTrue(change_array[0] === number)
       }
-    }
-    describe("change_num")  {
-      val header = RTP_Header()
-      val num : Byte = 2
-      it ("versionを変更できるか？") {
-        header.change_num(num)
-        assertTrue( header.version == num )
+      it ("create_headerのpaddingを2にする")
+      {
+        val number : Byte = 2
+        val change_array = header.create_header(padding = number)
+        assertTrue(change_array[1] === number)
       }
     }
   }
