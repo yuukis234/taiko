@@ -12,20 +12,39 @@ import org.spekframework.spek2.style.specification.describe
 import java.io.*
 
 object PacketTest: Spek({
-  describe("A calculator") {
-    it("should contain item") {
-      var test = RTP()
-      assertEquals(test.greeting(), "Hello world.")
+  describe("RTP") {
+    val image_file = File("src/test/resources/bird.png")
+    it("connect_header_file") {
+      var test = RTP(image_file)
+      assertTrue(test.connect_header_file() is ByteArray)
     }
   }
 
   describe("Image_Byte") {
     describe("change_png_to_byte") {
       it ("jpgをバイトファイルに変換します") {
-        // Fixme: あとで相対パスに変更する
         val image_file = File("src/test/resources/bird.png")
         val image = Image_Byte(image_file)
         assertTrue(image.change_png_to_byte() is ByteArray)
+      }
+    }
+  }
+
+  describe("RTP_Header") {
+    describe("create_header") {
+      val header = RTP_Header()
+      var header_array = header.create_header()
+      it ("ByteArrayを返してくれるか？") {
+        assertTrue( header_array is ByteArray )
+      }
+      it ("versionがbyteか？") {
+        assertTrue( header_array[0] is Byte )
+      }
+      it ("create_headerで任意のコードに変更できるか？")
+      {
+        val number : Byte = 2
+        val change_array = header.create_header(version = number)
+        assertTrue(change_array[0] === number)
       }
     }
   }
