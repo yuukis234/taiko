@@ -12,12 +12,8 @@ import org.spekframework.spek2.style.specification.describe
 import java.io.*
 
 object PacketTest: Spek({
-  describe("A calculator") {
+  describe("RTP") {
     val image_file = File("src/test/resources/bird.png")
-    it("should contain item") {
-      var test = RTP(image_file)
-      assertEquals(test.greeting(), "Hello world.")
-    }
     it("connect_header_file") {
       var test = RTP(image_file)
       assertTrue(test.connect_header_file() is ByteArray)

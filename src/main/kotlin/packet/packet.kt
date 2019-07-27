@@ -70,5 +70,4 @@ class RTP (file: File) {
   fun connect_header_file () : ByteArray {
     return header.create_header() + file.change_png_to_byte()
   }
-  fun greeting (): String = "Hello world."
 }
