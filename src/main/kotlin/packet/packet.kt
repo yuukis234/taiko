@@ -35,8 +35,10 @@ class RTP_Header {
   val timestamp : Byte = 0
   val ssrc : Byte = 0
 
-// rtp_headerの配列を作ってくれる。
-  fun create_header () : ByteArray {
+  // rtp_headerの配列を作ってくれる。
+  fun create_header (version: Byte = 0, padding: Byte = 0, extension: Byte = 0,
+                     csrc_count : Byte = 0, marker : Byte = 0, payload_type : Byte = 0,
+                     sequence_number : Byte = 0, timestamp : Byte = 0, ssrc : Byte = 0) : ByteArray {
     this.rtp_header[0] = version
     this.rtp_header[1] = padding
     this.rtp_header[2] = extension
