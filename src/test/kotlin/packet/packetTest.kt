@@ -40,17 +40,11 @@ object PacketTest: Spek({
       it ("versionがbyteか？") {
         assertTrue( header_array[0] is Byte )
       }
-      it ("create_headerのversionを2にする")
+      it ("create_headerで任意のコードに変更できるか？")
       {
         val number : Byte = 2
         val change_array = header.create_header(version = number)
         assertTrue(change_array[0] === number)
-      }
-      it ("create_headerのpaddingを2にする")
-      {
-        val number : Byte = 2
-        val change_array = header.create_header(padding = number)
-        assertTrue(change_array[1] === number)
       }
     }
   }
