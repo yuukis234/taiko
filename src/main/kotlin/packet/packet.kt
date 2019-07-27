@@ -50,10 +50,6 @@ class RTP_Header {
     this.rtp_header[8] = ssrc
     return this.rtp_header
   }
-
-  fun change_num (byte : Byte) {
-    this.version = byte
-  }
 }
 
 // RTPの制御をしてくれるコントローラー
