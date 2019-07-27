@@ -24,16 +24,16 @@ class Image_Byte (val file : File) {
 class RTP_Header {
 
   // Headerの構造を入れています。
-  val rtp_header = ByteArray(9)
-  var version : Byte = 1
-  val padding : Byte = 0
-  val extension : Byte = 0
-  val csrc_count : Byte = 0
-  val marker : Byte = 0
-  val payload_type : Byte = 0
-  val sequence_number : Byte = 0
-  val timestamp : Byte = 0
-  val ssrc : Byte = 0
+  private val rtp_header = ByteArray(9)
+  private var version : Byte = 1
+  private var padding : Byte = 0
+  private val extension : Byte = 0
+  private val csrc_count : Byte = 0
+  private val marker : Byte = 0
+  private val payload_type : Byte = 0
+  private val sequence_number : Byte = 0
+  private val timestamp : Byte = 0
+  private val ssrc : Byte = 0
 
   // rtp_headerの配列を作ってくれる。
   fun create_header (version: Byte = 0, padding: Byte = 0, extension: Byte = 0,
