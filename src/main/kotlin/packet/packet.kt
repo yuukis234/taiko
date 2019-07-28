@@ -2,6 +2,7 @@ package packet
 import java.io.*
 import javax.imageio.ImageIO
 import java.net.DatagramSocket
+import java.net.DatagramPacket
 
 // Imageをbyteコードに変えてくれるクラス
 // fileにはロードしたい画像のFileオブジェクトを入れる
@@ -55,7 +56,28 @@ class RTP_Header {
 // RTPの制御をしてくれるコントローラー
 // 輻輳を制御してネットワークの負荷を欠けないようにするためのクラス
 // これをすることによって、ネットワークの負荷を下げて快適なゲーム環境を提供しくれる。
-class RTP_Controller {}
+class RTP_Controller(port: Int ,file: File) {
+  private val image = Image_Byte(file)
+  private val rtp_header = RTP_Header()
+  private val server = DatagramSocket(port)
+
+  fun connect_header_file () : ByteArray {
+    return rtp_header.create_header() + image.change_png_to_byte()
+  }
+
+  fun send_packet () {
+    while(true){
+      try {
+        val data = connect_header_file ()
+        var packet = DatagramPacket(data, data.size)
+        this.server.receive(packet)
+      } catch (e: Exception) {
+        println("error")
+        break
+      }
+    }
+  }
+}
 
 // RPTの機能をまとめたクラス
 // このクラスを主に使う。このクラスに機能を付け加えて、使えるようにする。

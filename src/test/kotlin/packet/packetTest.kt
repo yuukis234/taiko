@@ -48,4 +48,14 @@ object PacketTest: Spek({
       }
     }
   }
+
+  describe("RTP_Controller") {
+    describe("create_header") {
+      val image_file = File("src/test/resources/bird.png")
+      it ("作ってくれた？") {
+        val controller = RTP_Controller (8888,image_file)
+        assertTrue(controller.connect_header_file() is ByteArray)
+      }
+    }
+  }
 })
