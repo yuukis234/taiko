@@ -69,10 +69,15 @@ class RTP_Controller(port: Int ,file: File) {
     while(true){
       try {
         val data = connect_header_file ()
-        var packet = DatagramPacket(data, data.size)
+        val packet = DatagramPacket(data, data.size)
+        println(data.size)
         this.server.receive(packet)
+        val buffer = packet.getData()
+        val str = String(buffer, 0, packet.getLength())
+        println(str)
+        this.server.send(packet)
       } catch (e: Exception) {
-        println("error")
+        println(e)
         break
       }
     }
